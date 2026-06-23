@@ -1,99 +1,789 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIA (DOST) — Prototype map</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <style>
-    .hero { background: var(--gia-ink); color: #fff; padding: 3.5rem 0 3rem; position: relative; overflow: hidden; }
-    .hero .bh { position: absolute; }
-    .hero .b1 { width: 260px; height: 260px; background: var(--gia-cyan); border-radius: 50% 50% 50% 0; right: 4%; top: -40px; opacity: .9; }
-    .hero .b2 { width: 120px; height: 120px; background: #fff; border-radius: 50% 0 50% 50%; right: 16%; bottom: -30px; opacity: .15; }
-    .hero h1 { color: #fff; font-size: clamp(2rem, 5vw, 3rem); }
-    .screen-link { display: flex; align-items: center; gap: .6rem; padding: .7rem .9rem; border: 1px solid var(--gia-slate-200); border-radius: var(--radius-sm); background: #fff; font-weight: 500; color: var(--gia-ink-700); transition: border-color .12s, box-shadow .12s; }
-    .screen-link:hover { border-color: var(--gia-cyan); box-shadow: var(--shadow-sm); color: var(--gia-ink); }
-    .screen-link .arrow { margin-left: auto; color: var(--gia-cyan-600); }
-    .role-tag { font-family: var(--font-mono); font-size: .7rem; padding: .15rem .5rem; border-radius: 999px; background: var(--gia-cyan-050); color: var(--gia-cyan-600); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOST DPMIS — Grants-In-Aid (GIA) Proposal System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Libre+Franklin:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e9edf3;font-family:'Public Sans',sans-serif;color:#1a2238}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-thumb{background:#c2cbda;border-radius:6px;border:3px solid #e9edf3}
+  ::-webkit-scrollbar-track{background:transparent}
+  @keyframes pulsering{0%{box-shadow:0 0 0 0 rgba(27,86,176,0.35)}70%{box-shadow:0 0 0 7px rgba(27,86,176,0)}100%{box-shadow:0 0 0 0 rgba(27,86,176,0)}}
+  input,select,textarea{font-family:'Public Sans',sans-serif;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:#1b56b0 !important}
+  button{font-family:inherit}
+</style>
 </head>
 <body>
-<header class="hero">
-  <span class="bh b1" aria-hidden="true"></span><span class="bh b2" aria-hidden="true"></span>
-  <div class="container position-relative">
-    <div class="d-flex align-items-center gap-2 mb-4">
-      <img src="assets/images/dost-logo.png" alt="DOST" width="36" height="36">
-      <span class="display fw-bold">GIA · DOST</span>
-    </div>
-    <p class="label-eyebrow" style="color:var(--gia-cyan)">Grants-in-Aid System · UI Prototype</p>
-    <h1 class="mb-2">Fund science. Track every peso.</h1>
-    <p class="mb-0" style="color:rgba(255,255,255,.7); max-width:52ch">Static Bootstrap 5 front-end for all roles. Every screen below is clickable. Wire up PHP + MySQL later — markup and classes already match the planned structure.</p>
-  </div>
-</header>
+<div id="app"></div>
+<template id="app-template">
+<div style="font-family:'Public Sans',sans-serif;color:#1a2238;min-height:100vh;background:#e9edf3">
 
-<main class="container py-5">
-  <div class="row g-4">
-    <!-- Auth -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Authentication</span><span class="role-tag">public</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="auth/login.html">Sign in <span class="arrow">→</span></a>
-          <a class="screen-link" href="auth/register.html">Register <span class="arrow">→</span></a>
-          <a class="screen-link" href="auth/forgot-password.html">Forgot password <span class="arrow">→</span></a>
+  <!-- ============ LOGIN ============ -->
+  <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+  <div style="min-height:100vh;display:grid;grid-template-columns:minmax(420px,1fr) minmax(440px,560px)">
+    <div style="background:linear-gradient(160deg,#0e2552 0%,#143a7e 60%,#16407f 100%);color:#fff;padding:56px 60px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:14px">
+<img src="assets/images/dost_seal-svg-mqovrvvp.png" width="54" height="54" style="flex-shrink:0;display:block" alt="DOST Logo">
+        <div>
+          <div style="font-family:'Libre Franklin';font-weight:800;font-size:16px;letter-spacing:0.02em;line-height:1.1">DOST · DPMIS</div>
+          <div style="font-size:11px;color:#aebfe0;letter-spacing:0.06em;text-transform:uppercase">Department of Science &amp; Technology</div>
         </div>
       </div>
-    </div>
-    <!-- Submitter -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Submitter</span><span class="role-tag">user</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="user/dashboard.html">Dashboard <span class="arrow">→</span></a>
-          <a class="screen-link" href="user/create-proposal.html">Create proposal <span class="arrow">→</span></a>
-          <a class="screen-link" href="user/my-proposals.html">My proposals <span class="arrow">→</span></a>
-          <a class="screen-link" href="user/view-proposal.html">View proposal + timeline <span class="arrow">→</span></a>
-        </div>
+      <div style="max-width:400px">
+        <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#d6a93f;font-weight:600;margin-bottom:18px">Republic of the Philippines</div>
+        <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:36px;line-height:1.08;letter-spacing:-0.02em;margin-bottom:18px">Grants-In-Aid (GIA) System</h1>
+        <p style="color:#c4d2ed;font-size:15px;line-height:1.6">Prepare, submit, and track research and grant proposals — from the Line-Item Budget down to the full review, endorsement, approval, and accounting pipeline.</p>
       </div>
-    </div>
-    <!-- Admin -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Endorsing Admin</span><span class="role-tag">admin</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="admin/pending.html">Pending review <span class="arrow">→</span></a>
-          <a class="screen-link" href="admin/proposal-details.html">Review · endorse / revise / reject <span class="arrow">→</span></a>
-        </div>
+      <div style="display:flex;gap:28px;color:#92a8d4;font-size:12.5px">
+        <div><div style="font-family:'Libre Franklin';font-weight:700;font-size:22px;color:#fff">6-step</div>proposal wizard</div>
+        <div><div style="font-family:'Libre Franklin';font-weight:700;font-size:22px;color:#fff">15%</div>counterpart rule</div>
+        <div><div style="font-family:'Libre Franklin';font-weight:700;font-size:22px;color:#fff">100%</div>traceable</div>
       </div>
+      <div style="position:absolute;right:-90px;bottom:-90px;width:280px;height:280px;border:1px solid rgba(214,169,63,0.25);border-radius:50%"></div>
+      <div style="position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;border:1px solid rgba(214,169,63,0.18);border-radius:50%"></div>
     </div>
-    <!-- Approver -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Approver</span><span class="role-tag">approver</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="approver/queue.html">Approval queue <span class="arrow">→</span></a>
+
+    <div style="background:#f4f6fa;display:flex;align-items:center;justify-content:center;padding:48px">
+      <div style="width:100%;max-width:380px">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#7c8aa3;font-weight:600;margin-bottom:8px">Secure sign in</div>
+        <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:26px;color:#16213c;margin-bottom:26px">Access your account</h2>
+
+        <label style="display:block;font-size:13px;font-weight:600;color:#42506b;margin-bottom:7px">Government email</label>
+        <input value="msantos@region2a.dost.gov" readonly="" style="width:100%;padding:12px 14px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;color:#1a2238;background:#fff;margin-bottom:16px">
+        <label style="display:block;font-size:13px;font-weight:600;color:#42506b;margin-bottom:7px">Password</label>
+        <input type="password" value="************" readonly="" style="width:100%;padding:12px 14px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;color:#1a2238;background:#fff;margin-bottom:22px">
+
+        <button onClick="{{ onLoginUser }}" style="width:100%;background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">Sign in</button>
+
+        <div style="display:flex;align-items:center;gap:12px;margin:24px 0 18px;color:#9aa6bb;font-size:12px"><div style="flex:1;height:1px;background:#dde3ec"></div>DEMO — JUMP TO A ROLE<div style="flex:1;height:1px;background:#dde3ec"></div></div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <button onClick="{{ onLoginUser }}" style="display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1px solid #d3dbe8;border-radius:9px;padding:12px 14px;cursor:pointer;font-family:inherit" style-hover="border-color:#1b56b0;background:#f7faff">
+            <div style="width:34px;height:34px;border-radius:8px;background:#e8f0fb;color:#1b56b0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">P</div>
+            <div><div style="font-weight:700;font-size:14px;color:#16213c">Proponent</div><div style="font-size:12px;color:#6b7790">Dr. Maria Santos · prepare &amp; track</div></div>
+          </button>
+          <button onClick="{{ onLoginAdmin }}" style="display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1px solid #d3dbe8;border-radius:9px;padding:12px 14px;cursor:pointer;font-family:inherit" style-hover="border-color:#1b56b0;background:#f7faff">
+            <div style="width:34px;height:34px;border-radius:8px;background:#f1ebfc;color:#7c3aed;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">A</div>
+            <div><div style="font-weight:700;font-size:14px;color:#16213c">Administrator</div><div style="font-size:12px;color:#6b7790">Engr. Roberto Cruz · review &amp; endorse</div></div>
+          </button>
+          <button onClick="{{ onLoginSuper }}" style="display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1px solid #d3dbe8;border-radius:9px;padding:12px 14px;cursor:pointer;font-family:inherit" style-hover="border-color:#1b56b0;background:#f7faff">
+            <div style="width:34px;height:34px;border-radius:8px;background:#fbf2dd;color:#b07d0a;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">S</div>
+            <div><div style="font-weight:700;font-size:14px;color:#16213c">Super Admin</div><div style="font-size:12px;color:#6b7790">ICT Division · users &amp; accounts</div></div>
+          </button>
         </div>
-      </div>
-    </div>
-    <!-- Accounting -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Accounting</span><span class="role-tag">accounting</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="accounting/queue.html">Accounting queue · process <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-    <!-- Super Admin -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100"><div class="card-header d-flex justify-content-between"><span>Super Admin</span><span class="role-tag">superadmin</span></div>
-        <div class="card-body d-flex flex-column gap-2">
-          <a class="screen-link" href="superadmin/users.html">User management <span class="arrow">→</span></a>
-          <a class="screen-link" href="superadmin/reports.html">Reports + export <span class="arrow">→</span></a>
-        </div>
+
+        <button onClick="{{ goTrack }}" style="width:100%;margin-top:18px;background:none;border:none;color:#1b56b0;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;padding:8px" style-hover="text-decoration:underline">Track a submission without signing in ›</button>
       </div>
     </div>
   </div>
+  </sc-if>
 
-  <div class="divider my-5"></div>
-  <p class="muted small text-center mb-0">Drop the real DOST logo SVG at <span class="mono">assets/images/dost-logo.png</span> (same filename) — it appears everywhere automatically.</p>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ============ PUBLIC TRACKING ============ -->
+  <sc-if value="{{ isTrack }}" hint-placeholder-val="{{ true }}">
+  <div style="min-height:100vh;background:#eef1f6;display:flex;flex-direction:column">
+    <div style="background:#143a7e;color:#fff;padding:0 24px;height:58px;display:flex;align-items:center;gap:13px">
+      <img src="assets/images/dost_seal-svg-mqovrvvp.png" width="38" height="38" style="flex-shrink:0;display:block" alt="DOST Logo">
+      <div style="font-family:'Libre Franklin';font-weight:800;font-size:15px">DOST · DPMIS — Submission Tracker</div>
+      <button onClick="{{ onLogout }}" style="margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,0.25);color:#cfdcf2;border-radius:7px;padding:7px 13px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit" style-hover="background:rgba(255,255,255,0.1)">‹ Back to sign in</button>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center;padding:46px 24px">
+      <div style="width:100%;max-width:680px">
+        <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:28px;color:#16213c;letter-spacing:-0.02em">Track your proposal</h1>
+        <p style="color:#5b6577;font-size:14.5px;margin:4px 0 20px">Enter the tracking code from your submission confirmation email to see its current stage.</p>
+        <div style="display:flex;gap:10px;margin-bottom:8px">
+          <input value="{{ trackCode }}" onInput="{{ onTrackInput }}" placeholder="e.g. DPMIS-2026-481204 or GIA-2026-0035" style="flex:1;padding:13px 15px;border:1px solid #cfd7e4;border-radius:9px;font-size:14.5px;font-family:'IBM Plex Mono';background:#fff">
+          <button onClick="{{ onDoTrack }}" style="background:#1b56b0;color:#fff;border:none;border-radius:9px;padding:13px 24px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">Track</button>
+        </div>
+        <div style="font-size:12.5px;color:#8a95a8;margin-bottom:24px">Try <span style="font-family:'IBM Plex Mono';color:#1b56b0">GIA-2026-0035</span> or <span style="font-family:'IBM Plex Mono';color:#1b56b0">SETUP-2026-0024</span></div>
+
+        <sc-if value="{{ trackFound }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#fff;border:1px solid #e0e5ee;border-radius:13px;padding:26px 28px">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:6px">
+              <span style="font-family:'IBM Plex Mono';font-size:13px;color:#1b56b0;font-weight:600;background:#e8f0fb;padding:3px 9px;border-radius:6px">{{ track.ref }}</span>
+              <span style="background:{{ track.badgeBg }};color:{{ track.badgeFg }};font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:20px">{{ track.badgeLabel }}</span>
+            </div>
+            <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:19px;color:#16213c;line-height:1.25;text-wrap:pretty">{{ track.title }}</h2>
+            <div style="font-size:13px;color:#6b7790;margin:6px 0 22px">{{ track.program }} · {{ track.by }}</div>
+            <div style="background:#f5f8fd;border:1px solid #e1e9f5;border-radius:10px;padding:13px 16px;margin-bottom:22px;font-size:13.5px;color:#2a3550;font-weight:600">{{ track.whatsNext }}</div>
+            <sc-for list="{{ track.stages }}" as="st" hint-placeholder-count="6">
+              <div style="display:flex;gap:14px">
+                <div style="position:relative;width:26px;display:flex;justify-content:center;flex-shrink:0">
+                  <div style="position:absolute;top:22px;bottom:-6px;width:2px;background:{{ st.lineColor }}"></div>
+                  <div style="{{ st.dotStyle }}">{{ st.dotMark }}</div>
+                </div>
+                <div style="padding-bottom:16px;flex:1">
+                  <div style="font-weight:700;font-size:14px;color:{{ st.titleColor }}">{{ st.label }}</div>
+                  <div style="font-size:12.5px;color:#8a95a8;margin-top:2px">{{ st.caption }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ trackNotFound }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#fff;border:1px dashed #d3a8a0;border-radius:13px;padding:34px;text-align:center;color:#c0392b;font-size:14px;font-weight:600">No proposal found for that tracking code. Check the code and try again.</div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ APP ============ -->
+  <sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+  <div style="min-height:100vh;display:flex;flex-direction:column">
+
+    <div style="background:#0e2552;color:#aebfe0;font-size:11.5px;padding:5px 24px;display:flex;align-items:center;gap:8px;letter-spacing:0.02em">
+      <span style="width:7px;height:7px;border-radius:50%;background:#d6a93f"></span>
+      Official portal of the Department of Science and Technology · Republic of the Philippines
+    </div>
+
+    <header style="background:#143a7e;color:#fff;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;box-shadow:0 2px 8px rgba(14,37,82,0.18)">
+      <div style="display:flex;align-items:center;gap:13px;cursor:pointer" onClick="{{ goHome }}">
+        <img src="assets/images/dost_seal-svg-mqovrvvp.png" width="38" height="38" style="flex-shrink:0;display:block" alt="DOST Logo">
+        <div>
+          <div style="font-family:'Libre Franklin';font-weight:800;font-size:15px;letter-spacing:0.01em;line-height:1.05">DOST DPMIS</div>
+          <div style="font-size:11px;color:#9fb4dc;letter-spacing:0.04em">Grants-In-Aid (GIA) System</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <div style="display:flex;background:#0e2c63;border-radius:9px;padding:3px;gap:2px">
+          <sc-for list="{{ roleTabs }}" as="tab" hint-placeholder-count="3">
+            <button onClick="{{ tab.onClick }}" style="{{ tab.style }}" style-hover="opacity:0.92">{{ tab.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding-left:16px;border-left:1px solid rgba(255,255,255,0.16)">
+          <div style="text-align:right">
+            <div style="font-size:13px;font-weight:600;line-height:1.1">{{ headerName }}</div>
+            <div style="font-size:11px;color:#9fb4dc">{{ headerRole }}</div>
+          </div>
+          <div style="width:34px;height:34px;border-radius:50%;background:#d6a93f;color:#0e2552;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">{{ headerInitials }}</div>
+          <button onClick="{{ onLogout }}" title="Sign out" style="background:transparent;border:1px solid rgba(255,255,255,0.25);color:#cfdcf2;border-radius:7px;padding:7px 11px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit" style-hover="background:rgba(255,255,255,0.1)">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <div style="display:flex;flex:1;align-items:stretch">
+      <aside style="width:236px;background:#11306a;color:#fff;flex-shrink:0;padding:18px 14px;display:flex;flex-direction:column">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7d93c4;font-weight:600;padding:6px 12px 12px">{{ roleLabel }}</div>
+        <nav style="display:flex;flex-direction:column;gap:3px">
+          <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="4">
+            <button onClick="{{ nav.onClick }}" style="{{ nav.style }}" style-hover="background:rgba(255,255,255,0.08)">
+              <span>{{ nav.label }}</span>
+              <sc-if value="{{ nav.badge }}" hint-placeholder-val="{{ true }}"><span style="{{ nav.badgeStyle }}">{{ nav.badge }}</span></sc-if>
+            </button>
+          </sc-for>
+        </nav>
+        <div style="margin-top:auto;padding:14px 12px;background:rgba(255,255,255,0.05);border-radius:9px;font-size:12px;color:#a9bbdf;line-height:1.5">
+          <div style="color:#d6a93f;font-weight:700;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px">Interactive demo</div>
+          Actions persist across roles. Submit as Proponent, then switch to Administrator to move the proposal along.
+        </div>
+      </aside>
+
+      <main style="flex:1;padding:30px 38px;max-width:1200px;width:100%;margin:0 auto;min-width:0">
+
+        <!-- ===== DASHBOARD ===== -->
+        <sc-if value="{{ scDash }}" hint-placeholder-val="{{ true }}">
+          <sc-if value="{{ roleUser }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-bottom:24px">
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:28px;color:#16213c;letter-spacing:-0.02em">Welcome back, Dr. Santos</h1>
+              <p style="color:#5b6577;font-size:14.5px;margin-top:3px">Here is the status of your proposals and what needs your attention.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px">
+              <sc-for list="{{ userStats }}" as="s" hint-placeholder-count="4">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:18px 20px">
+                  <div style="font-size:12px;color:#6b7790;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">{{ s.label }}</div>
+                  <div style="font-family:'Libre Franklin';font-weight:800;font-size:30px;color:{{ s.color }};margin-top:8px;line-height:1">{{ s.value }}</div>
+                  <div style="font-size:12px;color:#8a95a8;margin-top:4px">{{ s.sub }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ hasTodo }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#fff;border:1px solid #e0e5ee;border-left:4px solid #d6a93f;border-radius:11px;padding:18px 22px;margin-bottom:24px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="font-family:'Libre Franklin';font-weight:700;font-size:16px;color:#16213c">Action needed from you</span><span style="background:#fbf2dd;color:#b07d0a;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px">{{ todoCount }}</span></div>
+              <sc-for list="{{ myTodo }}" as="p" hint-placeholder-count="2">
+                <div onClick="{{ p.onOpen }}" style="display:flex;align-items:center;gap:14px;padding:12px;border:1px solid #eef1f6;border-radius:9px;cursor:pointer;margin-bottom:8px" style-hover="border-color:#c7d4ea;background:#fafbfe">
+                  <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14.5px;color:#16213c">{{ p.title }}</div><div style="font-family:'IBM Plex Mono';font-size:12px;color:#7c8aa3;margin-top:2px">{{ p.ref }}</div></div>
+                  <span style="background:{{ p.badgeBg }};color:{{ p.badgeFg }};font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px;white-space:nowrap">{{ p.badgeLabel }}</span>
+                  <span style="font-size:13px;color:#1b56b0;font-weight:700;white-space:nowrap">{{ p.cta }} ›</span>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c">My recent proposals</h2>
+              <button onClick="{{ goCreate }}" style="background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">+ New proposal</button>
+            </div>
+            <dc-import name="ProposalTable" rows="{{ myProposals }}" hint-size="100%,200px"></dc-import>
+          </sc-if>
+
+          <sc-if value="{{ roleAdmin }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-bottom:24px">
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:28px;color:#16213c;letter-spacing:-0.02em">Action Inbox</h1>
+              <p style="color:#5b6577;font-size:14.5px;margin-top:3px">Proposals awaiting your decision, ordered by the next required step.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px">
+              <sc-for list="{{ adminStats }}" as="s" hint-placeholder-count="4">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:18px 20px">
+                  <div style="font-size:12px;color:#6b7790;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">{{ s.label }}</div>
+                  <div style="font-family:'Libre Franklin';font-weight:800;font-size:30px;color:{{ s.color }};margin-top:8px;line-height:1">{{ s.value }}</div>
+                  <div style="font-size:12px;color:#8a95a8;margin-top:4px">{{ s.sub }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:12px">Requires your action</h2>
+            <sc-if value="{{ hasInbox }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ adminInbox }}" as="p" hint-placeholder-count="3">
+                  <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:16px 20px;display:flex;align-items:center;gap:18px">
+                    <div style="width:4px;height:46px;border-radius:3px;background:{{ p.badgeFg }}"></div>
+                    <div onClick="{{ p.onOpen }}" style="flex:1;min-width:0;cursor:pointer">
+                      <div style="font-weight:700;font-size:15px;color:#16213c">{{ p.title }}</div>
+                      <div style="font-size:12.5px;color:#6b7790;margin-top:3px"><span style="font-family:'IBM Plex Mono'">{{ p.ref }}</span> · {{ p.program }} · {{ p.by }} · {{ p.amountStr }}</div>
+                    </div>
+                    <span style="background:{{ p.badgeBg }};color:{{ p.badgeFg }};font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap">{{ p.badgeLabel }}</span>
+                    <button onClick="{{ p.onOpen }}" style="background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;white-space:nowrap" style-hover="background:#16489a">{{ p.actionLabel }}</button>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ inboxEmpty }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#fff;border:1px dashed #cdd6e4;border-radius:11px;padding:40px;text-align:center;color:#7c8aa3">No proposals are waiting on you. Great — inbox zero.</div>
+            </sc-if>
+          </sc-if>
+
+          <sc-if value="{{ roleSuper }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-bottom:24px">
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:28px;color:#16213c;letter-spacing:-0.02em">System Overview</h1>
+              <p style="color:#5b6577;font-size:14.5px;margin-top:3px">Accounts, users, and platform activity across all regional offices.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px">
+              <sc-for list="{{ superStats }}" as="s" hint-placeholder-count="4">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:18px 20px">
+                  <div style="font-size:12px;color:#6b7790;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">{{ s.label }}</div>
+                  <div style="font-family:'Libre Franklin';font-weight:800;font-size:30px;color:{{ s.color }};margin-top:8px;line-height:1">{{ s.value }}</div>
+                  <div style="font-size:12px;color:#8a95a8;margin-top:4px">{{ s.sub }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h2 style="font-family:'Libre Franklin';font-weight:700;font-size:16px;color:#16213c">Pending account approvals</h2><span style="background:#fbe9e7;color:#c0392b;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px">{{ pendingCount }}</span></div>
+                <sc-for list="{{ pending }}" as="a" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #eef1f6">
+                    <div style="width:34px;height:34px;border-radius:50%;background:#eef2f9;color:#42506b;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px">{{ a.initials }}</div>
+                    <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13.5px;color:#16213c">{{ a.name }}</div><div style="font-size:12px;color:#7c8aa3">{{ a.role }} · {{ a.unit }}</div></div>
+                    <button onClick="{{ a.onApprove }}" style="background:#16915a;color:#fff;border:none;border-radius:7px;padding:7px 12px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit">Approve</button>
+                    <button onClick="{{ a.onReject }}" style="background:#fff;color:#c0392b;border:1px solid #e6c3be;border-radius:7px;padding:7px 12px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit">Reject</button>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ pendingEmpty }}" hint-placeholder-val="{{ true }}"><div style="padding:18px 0;color:#8a95a8;font-size:13.5px">All caught up — no pending requests.</div></sc-if>
+              </div>
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:16px;color:#16213c;margin-bottom:14px">Proposals by stage</h2>
+                <sc-for list="{{ stageBreakdown }}" as="b" hint-placeholder-count="6">
+                  <div style="display:flex;align-items:center;gap:12px;padding:7px 0">
+                    <span style="width:9px;height:9px;border-radius:50%;background:{{ b.color }}"></span>
+                    <span style="flex:1;font-size:13.5px;color:#3a465e">{{ b.label }}</span>
+                    <div style="width:120px;height:7px;background:#eef1f6;border-radius:5px;overflow:hidden"><div style="height:100%;width:{{ b.pct }};background:{{ b.color }}"></div></div>
+                    <span style="font-weight:700;font-size:13px;color:#16213c;width:22px;text-align:right">{{ b.count }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- ===== LIST ===== -->
+        <sc-if value="{{ scList }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+            <div>
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;letter-spacing:-0.02em">{{ listTitle }}</h1>
+              <p style="color:#5b6577;font-size:14px;margin-top:2px">{{ listSubtitle }}</p>
+            </div>
+            <sc-if value="{{ roleUser }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ goCreate }}" style="background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:11px 17px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">+ New proposal</button>
+            </sc-if>
+          </div>
+          <dc-import name="ProposalTable" rows="{{ listRows }}" hint-size="100%,300px"></dc-import>
+        </sc-if>
+
+        <!-- ===== WIZARD ===== -->
+        <sc-if value="{{ scCreate }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ goBack }}" style="background:none;border:none;color:#6b7790;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:12px;padding:0" style-hover="color:#1b56b0">‹ Cancel</button>
+          <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;letter-spacing:-0.02em;margin-bottom:3px">{{ wzHeading }}</h1>
+          <p style="color:#5b6577;font-size:14px;margin-bottom:22px">Complete each step. You can save a draft and return at any time.</p>
+
+          <!-- progress -->
+          <div style="display:flex;align-items:center;background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:14px 10px;margin-bottom:22px">
+            <sc-for list="{{ wzSteps }}" as="st" hint-placeholder-count="6">
+              <button onClick="{{ st.onClick }}" style="flex:1;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 2px">
+                <div style="display:flex;align-items:center;width:100%">
+                  <div style="flex:1;height:2px;background:{{ st.lineL }}"></div>
+                  <div style="{{ st.dotStyle }}">{{ st.dotMark }}</div>
+                  <div style="flex:1;height:2px;background:{{ st.lineR }}"></div>
+                </div>
+                <div style="font-size:11.5px;font-weight:700;color:{{ st.labelColor }};text-align:center;line-height:1.2">{{ st.label }}</div>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="background:#fff;border:1px solid #e0e5ee;border-radius:13px;padding:28px 30px;margin-bottom:18px">
+
+            <!-- STEP 1: TYPE -->
+            <sc-if value="{{ wStep1 }}" hint-placeholder-val="{{ true }}">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:4px">Proposal type</h2>
+              <p style="color:#6b7790;font-size:13.5px;margin-bottom:18px">Select the type of submission. Field sets and required documents adapt to your choice.</p>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px">
+                <sc-for list="{{ typeCards }}" as="t" hint-placeholder-count="6">
+                  <button onClick="{{ t.onClick }}" style="{{ t.style }}">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><span style="font-weight:700;font-size:14px;color:{{ t.titleColor }}">{{ t.name }}</span><span style="{{ t.tagStyle }}">{{ t.tag }}</span></div>
+                    <div style="font-size:12px;color:#8a95a8;text-align:left;line-height:1.4">{{ t.desc }}</div>
+                  </button>
+                </sc-for>
+              </div>
+
+              <h3 style="font-weight:700;font-size:14px;color:#42506b;margin-bottom:10px">Classification</h3>
+              <div style="display:flex;gap:10px;margin-bottom:26px">
+                <sc-for list="{{ classChips }}" as="c" hint-placeholder-count="3">
+                  <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+                </sc-for>
+              </div>
+
+              <h3 style="font-weight:700;font-size:14px;color:#42506b;margin-bottom:10px">Call for proposals</h3>
+              <select value="{{ wz.call }}" onChange="{{ onCall }}" style="width:100%;max-width:480px;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;background:#fff;color:#1a2238">
+                <option>2026 GIA Call — Health &amp; Wellness</option>
+                <option>2026 GIA Call — Agriculture, Aquatic &amp; Natural Resources</option>
+                <option>2026 GIA Call — Industry, Energy &amp; Emerging Technology</option>
+                <option>2026 GIA Call — Disaster Risk Reduction &amp; Climate Change</option>
+              </select>
+            </sc-if>
+
+            <!-- STEP 2: BASIC INFO -->
+            <sc-if value="{{ wStep2 }}" hint-placeholder-val="{{ true }}">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:18px">Basic information</h2>
+              <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Project title <span style="color:#c0392b">*</span></label>
+              <input value="{{ wz.title }}" onInput="{{ onTitle }}" placeholder="e.g. IoT Early-Warning System for Flood-Prone Barangays" style="width:100%;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;margin-bottom:18px">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Implementing agency</label>
+                  <input value="{{ wz.impAgency }}" onInput="{{ onImp }}" style="width:100%;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px">
+                </div>
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Type of research</label>
+                  <select value="{{ wz.research }}" onChange="{{ onResearch }}" style="width:100%;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;background:#fff;color:#1a2238">
+                    <option>Basic Research</option><option>Applied Research</option><option>Research &amp; Development</option><option>Technology Transfer</option>
+                  </select>
+                </div>
+              </div>
+
+              <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Co-implementing / cooperating agencies</label>
+              <div style="display:flex;gap:8px;margin-bottom:9px">
+                <input value="{{ wz.coInput }}" onInput="{{ onCoInput }}" placeholder="Add an agency and press Add" style="flex:1;padding:10px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px">
+                <button onClick="{{ onAddCo }}" style="background:#eef2f9;color:#1b3a6e;border:1px solid #c7d0e0;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit">Add</button>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;min-height:4px">
+                <sc-for list="{{ coChips }}" as="c" hint-placeholder-count="2">
+                  <span style="display:inline-flex;align-items:center;gap:7px;background:#e8f0fb;color:#1b3a6e;font-size:13px;font-weight:600;padding:5px 8px 5px 12px;border-radius:20px">{{ c.label }}<button onClick="{{ c.onRemove }}" style="background:none;border:none;color:#1b56b0;cursor:pointer;font-size:15px;line-height:1;font-family:inherit">×</button></span>
+                </sc-for>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Target start date</label>
+                  <input type="date" value="{{ wz.start }}" onInput="{{ onStart }}" style="width:100%;padding:10px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;color:#1a2238">
+                </div>
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Target end date</label>
+                  <input type="date" value="{{ wz.end }}" onInput="{{ onEnd }}" style="width:100%;padding:10px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;color:#1a2238">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">HNRDA priority area</label>
+                  <select value="{{ wz.hnrdaArea }}" onChange="{{ onHnrda }}" style="width:100%;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;background:#fff;color:#1a2238">
+                    <option>Health</option><option>Agriculture, Aquatic &amp; Natural Resources</option><option>Industry, Energy &amp; Emerging Technology</option><option>Disaster Risk Reduction &amp; Climate Change</option><option>Basic Research</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">GAD score <span style="color:#8a95a8;font-weight:600">(0–100)</span></label>
+                  <div style="display:flex;align-items:center;gap:12px;padding-top:9px">
+                    <input type="range" min="0" max="100" value="{{ wz.gad }}" onInput="{{ onGad }}" style="flex:1;accent-color:#1b56b0">
+                    <span style="font-family:'IBM Plex Mono';font-weight:600;font-size:14px;color:#16213c;width:34px;text-align:right">{{ wz.gad }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:9px">Sustainable Development Goals addressed</label>
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <sc-for list="{{ sdgChips }}" as="g" hint-placeholder-count="8">
+                  <button onClick="{{ g.onClick }}" style="{{ g.style }}">{{ g.label }}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <!-- STEP 3: NARRATIVE -->
+            <sc-if value="{{ wStep3 }}" hint-placeholder-val="{{ true }}">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:4px">Narrative</h2>
+              <p style="color:#6b7790;font-size:13.5px;margin-bottom:20px">Complete the narrative sections required for an R&amp;D Project. Avoid pasting formatted content from word processors.</p>
+              <div style="display:flex;flex-direction:column;gap:20px">
+                <sc-for list="{{ narrSections }}" as="n" hint-placeholder-count="4">
+                  <div>
+                    <label style="display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:#42506b;margin-bottom:7px">{{ n.label }}<sc-if value="{{ n.tag }}" hint-placeholder-val="{{ true }}"><span style="background:#f1ebfc;color:#7c3aed;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:0.04em">{{ n.tag }}</span></sc-if></label>
+                    <textarea value="{{ n.value }}" onInput="{{ n.onInput }}" rows="3" placeholder="{{ n.ph }}" style="width:100%;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;resize:vertical;line-height:1.55"></textarea>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <!-- STEP 4: TEAM & SITES -->
+            <sc-if value="{{ wStep4 }}" hint-placeholder-val="{{ true }}">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:18px">Project team</h2>
+              <label style="display:block;font-size:13px;font-weight:700;color:#42506b;margin-bottom:7px">Project leader</label>
+              <input value="{{ wz.leader }}" onInput="{{ onLeader }}" style="width:100%;max-width:480px;padding:11px 13px;border:1px solid #cfd7e4;border-radius:8px;font-size:14px;margin-bottom:18px">
+
+              <div style="border:1px solid #e6ebf3;border-radius:10px;overflow:hidden;margin-bottom:10px">
+                <div style="display:grid;grid-template-columns:1.3fr 1.3fr 1fr 40px;background:#f6f8fb;font-size:11.5px;font-weight:700;color:#7c8aa3;text-transform:uppercase;letter-spacing:0.04em">
+                  <div style="padding:9px 12px">Member name</div><div style="padding:9px 12px">Expertise</div><div style="padding:9px 12px">Role</div><div></div>
+                </div>
+                <sc-for list="{{ teamRows }}" as="t" hint-placeholder-count="2">
+                  <div style="display:grid;grid-template-columns:1.3fr 1.3fr 1fr 40px;border-top:1px solid #eef1f6;align-items:center">
+                    <input value="{{ t.name }}" onInput="{{ t.onName }}" placeholder="Name" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent">
+                    <input value="{{ t.expertise }}" onInput="{{ t.onExp }}" placeholder="Field of expertise" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent;border-left:1px solid #eef1f6">
+                    <select value="{{ t.role }}" onChange="{{ t.onRole }}" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent;border-left:1px solid #eef1f6;color:#1a2238"><option>Study Leader</option><option>Researcher</option><option>Research Staff</option><option>Consultant</option></select>
+                    <button onClick="{{ t.onRemove }}" style="background:none;border:none;border-left:1px solid #eef1f6;color:#c0392b;cursor:pointer;font-size:16px;height:100%;font-family:inherit">×</button>
+                  </div>
+                </sc-for>
+              </div>
+              <button onClick="{{ onAddTeam }}" style="background:#fff;border:1px dashed #c2cee0;border-radius:8px;padding:10px 16px;color:#1b56b0;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;margin-bottom:28px" style-hover="border-color:#1b56b0;background:#f7faff">+ Add team member</button>
+
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:14px">Sites of implementation</h2>
+              <div style="border:1px solid #e6ebf3;border-radius:10px;overflow:hidden;margin-bottom:10px">
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 40px;background:#f6f8fb;font-size:11.5px;font-weight:700;color:#7c8aa3;text-transform:uppercase;letter-spacing:0.04em">
+                  <div style="padding:9px 12px">Barangay</div><div style="padding:9px 12px">Municipality / City</div><div style="padding:9px 12px">Province</div><div style="padding:9px 12px">Region</div><div></div>
+                </div>
+                <sc-for list="{{ siteRows }}" as="s" hint-placeholder-count="1">
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 40px;border-top:1px solid #eef1f6;align-items:center">
+                    <input value="{{ s.barangay }}" onInput="{{ s.onB }}" placeholder="Barangay" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent">
+                    <input value="{{ s.municipality }}" onInput="{{ s.onM }}" placeholder="City/Municipality" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent;border-left:1px solid #eef1f6">
+                    <input value="{{ s.province }}" onInput="{{ s.onP }}" placeholder="Province" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent;border-left:1px solid #eef1f6">
+                    <input value="{{ s.region }}" onInput="{{ s.onR }}" placeholder="Region" style="border:none;padding:11px 12px;font-size:13.5px;background:transparent;border-left:1px solid #eef1f6">
+                    <button onClick="{{ s.onRemove }}" style="background:none;border:none;border-left:1px solid #eef1f6;color:#c0392b;cursor:pointer;font-size:16px;height:100%;font-family:inherit">×</button>
+                  </div>
+                </sc-for>
+              </div>
+              <button onClick="{{ onAddSite }}" style="background:#fff;border:1px dashed #c2cee0;border-radius:8px;padding:10px 16px;color:#1b56b0;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit" style-hover="border-color:#1b56b0;background:#f7faff">+ Add site</button>
+            </sc-if>
+
+            <!-- STEP 5: BUDGET -->
+            <sc-if value="{{ wStep5 }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+                <div>
+                  <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c">Line-Item Budget (LIB)</h2>
+                  <p style="color:#6b7790;font-size:13.5px;margin-top:3px">Add cost items under each category. Counterpart funds must be at least <b>15% of the DOST-funded amount</b>.</p>
+                </div>
+              </div>
+
+              <!-- year tabs -->
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap">
+                <sc-for list="{{ yearTabs }}" as="y" hint-placeholder-count="1">
+                  <button onClick="{{ y.onClick }}" style="{{ y.style }}">{{ y.label }}</button>
+                </sc-for>
+                <button onClick="{{ onAddYear }}" style="background:#fff;border:1px dashed #c2cee0;border-radius:8px;padding:8px 13px;color:#1b56b0;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit" style-hover="border-color:#1b56b0">+ Add year</button>
+                <button onClick="{{ onCopyLib }}" style="background:#fff;border:1px solid #c7d0e0;border-radius:8px;padding:8px 13px;color:#42506b;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit" style-hover="background:#f5f8fd">Copy LIB to new year</button>
+              </div>
+
+              <!-- PS -->
+              <dc-import name="BudgetSection" title="Personnel Services (PS)" subtitle="Salaries and wages of project personnel" rows="{{ psRows }}" onadd="{{ onAddPS }}" subtotal="{{ psSub }}" hint-size="100%,140px"></dc-import>
+              <div style="height:16px"></div>
+              <dc-import name="BudgetSection" title="Maintenance &amp; Other Operating Expenses (MOOE)" subtitle="Supplies, travel, services, and operating costs" rows="{{ mooeRows }}" onadd="{{ onAddMOOE }}" subtotal="{{ mooeSub }}" hint-size="100%,140px"></dc-import>
+              <div style="height:16px"></div>
+              <dc-import name="BudgetSection" title="Capital Outlay (CO)" subtitle="Equipment and durable assets to be purchased" rows="{{ coRows }}" onadd="{{ onAddCO }}" subtotal="{{ coSub }}" hint-size="100%,140px"></dc-import>
+
+              <!-- totals + 15% rule -->
+              <div style="background:#0e2552;border-radius:13px;padding:22px 24px;margin-top:22px;color:#fff">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px">
+                  <div><div style="font-size:11.5px;color:#9fb4dc;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">DOST-funded</div><div style="font-family:'Libre Franklin';font-weight:800;font-size:24px;margin-top:4px">{{ bDost }}</div></div>
+                  <div><div style="font-size:11.5px;color:#9fb4dc;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Counterpart</div><div style="font-family:'Libre Franklin';font-weight:800;font-size:24px;margin-top:4px">{{ bCp }}</div></div>
+                  <div><div style="font-size:11.5px;color:#9fb4dc;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Total (Year {{ bYearNo }})</div><div style="font-family:'Libre Franklin';font-weight:800;font-size:24px;margin-top:4px;color:#ffd98a">{{ bTotal }}</div></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
+                  <div style="flex:1">
+                    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><span style="font-size:13px;font-weight:700">Counterpart ratio</span><span style="font-family:'IBM Plex Mono';font-size:13px;color:#ffd98a">{{ bRatio }}</span><span style="font-size:12px;color:#9fb4dc">of DOST funds (min. 15%)</span></div>
+                    <div style="height:8px;background:rgba(255,255,255,0.14);border-radius:5px;overflow:hidden;position:relative">
+                      <div style="position:absolute;left:15%;top:-3px;bottom:-3px;width:2px;background:#ffd98a"></div>
+                      <div style="height:100%;width:{{ bBarPct }};background:{{ bBarColor }};border-radius:5px"></div>
+                    </div>
+                  </div>
+                  <span style="{{ bRuleStyle }}">{{ bRuleText }}</span>
+                </div>
+                <div style="font-size:12.5px;color:#9fb4dc;margin-top:12px">Grand total across all {{ bYearCount }} year(s): <b style="color:#fff;font-family:'IBM Plex Mono'">{{ bGrand }}</b></div>
+              </div>
+            </sc-if>
+
+            <!-- STEP 6: DOCS & SUBMIT -->
+            <sc-if value="{{ wStep6 }}" hint-placeholder-val="{{ true }}">
+              <h2 style="font-family:'Libre Franklin';font-weight:700;font-size:18px;color:#16213c;margin-bottom:4px">Supplementary documents</h2>
+              <p style="color:#6b7790;font-size:13.5px;margin-bottom:18px">Upload the required attachments. The Line-Item Budget is generated automatically by the system.</p>
+
+              <div style="display:flex;align-items:center;gap:11px;background:#e6f5ee;border:1px solid #cfe7d9;border-radius:9px;padding:12px 15px;margin-bottom:10px">
+                <span style="width:22px;height:22px;border-radius:50%;background:#16915a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800">✓</span>
+                <div style="flex:1"><div style="font-weight:700;font-size:13.5px;color:#16213c">Line-Item Budget (LIB)</div><div style="font-size:12px;color:#6b7790">Auto-generated from Step 5</div></div>
+                <span style="background:#d8efe2;color:#0f7a4a;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">System</span>
+              </div>
+
+              <sc-for list="{{ docRows }}" as="d" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #e6ebf3;border-radius:9px;padding:12px 15px;margin-bottom:8px">
+                  <span style="{{ d.iconStyle }}">{{ d.iconMark }}</span>
+                  <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13.5px;color:#16213c">{{ d.name }}</div><sc-if value="{{ d.file }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Mono';font-size:11.5px;color:#16915a;margin-top:1px">{{ d.file }}</div></sc-if></div>
+                  <span style="{{ d.badgeStyle }}">{{ d.badge }}</span>
+                  <button onClick="{{ d.onToggle }}" style="{{ d.btnStyle }}">{{ d.btnLabel }}</button>
+                </div>
+              </sc-for>
+
+              <label style="display:flex;align-items:flex-start;gap:11px;background:#f5f8fd;border:1px solid #e1e9f5;border-radius:9px;padding:14px 16px;margin-top:18px;cursor:pointer">
+                <input type="checkbox" checked="{{ wz.tc }}" onChange="{{ onTc }}" style="margin-top:2px;width:17px;height:17px;accent-color:#1b56b0;cursor:pointer">
+                <span style="font-size:13.5px;color:#2a3550;line-height:1.5">I certify that the information provided is accurate and complete, and I agree to the <b>DOST terms and conditions</b> for grant proposals, including the counterpart-funding and reporting requirements.</span>
+              </label>
+
+              <sc-if value="{{ submitBlocked }}" hint-placeholder-val="{{ true }}">
+                <div style="background:#fbf2dd;color:#92670a;font-size:13px;font-weight:600;padding:11px 15px;border-radius:9px;margin-top:16px">{{ submitMsg }}</div>
+              </sc-if>
+            </sc-if>
+          </div>
+
+          <!-- footer nav -->
+          <div style="display:flex;align-items:center;gap:12px;padding-bottom:20px">
+            <sc-if value="{{ wzCanBack }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onWzBack }}" style="background:#fff;color:#1b3a6e;border:1px solid #c7d0e0;border-radius:8px;padding:12px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit" style-hover="background:#f5f8fd">‹ Back</button>
+            </sc-if>
+            <button onClick="{{ onSaveDraft }}" style="background:none;color:#6b7790;border:none;padding:12px 8px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit" style-hover="color:#1b56b0">Save draft &amp; exit</button>
+            <div style="flex:1"></div>
+            <sc-if value="{{ wzNotLast }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onWzNext }}" style="background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:12px 26px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">Next ›</button>
+            </sc-if>
+            <sc-if value="{{ wzLast }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onSubmitWizard }}" style="{{ submitBtnStyle }}">Submit proposal</button>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ===== DETAIL ===== -->
+        <sc-if value="{{ scDetail }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ goBack }}" style="background:none;border:none;color:#6b7790;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:14px;padding:0" style-hover="color:#1b56b0">‹ Back to {{ backLabel }}</button>
+
+          <sc-if value="{{ detail.justSubmitted }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#e6f5ee;border:1px solid #cfe7d9;border-radius:11px;padding:15px 18px;margin-bottom:18px;display:flex;align-items:center;gap:12px">
+              <span style="width:26px;height:26px;border-radius:50%;background:#16915a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">✓</span>
+              <div style="flex:1"><div style="font-weight:700;font-size:14.5px;color:#0f5c39">Submission received</div><div style="font-size:13px;color:#2a6b4c">Your tracking code is <b style="font-family:'IBM Plex Mono'">{{ detail.tracking }}</b> — a confirmation email has been sent.</div></div>
+            </div>
+          </sc-if>
+
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:6px">
+            <div style="min-width:0">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+                <span style="font-family:'IBM Plex Mono';font-size:13px;color:#1b56b0;font-weight:600;background:#e8f0fb;padding:3px 9px;border-radius:6px">{{ detail.ref }}</span>
+                <span style="background:{{ detail.badgeBg }};color:{{ detail.badgeFg }};font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:20px">{{ detail.badgeLabel }}</span>
+              </div>
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:25px;color:#16213c;letter-spacing:-0.02em;line-height:1.2;text-wrap:pretty">{{ detail.title }}</h1>
+              <div style="font-size:13.5px;color:#6b7790;margin-top:7px">{{ detail.program }} · Submitted by {{ detail.by }} · {{ detail.unit }}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:12px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Total budget</div>
+              <div style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;line-height:1.1">{{ detail.amountStr }}</div>
+            </div>
+          </div>
+
+          <div style="background:{{ detail.nextBg }};border:1px solid {{ detail.nextBorder }};border-radius:11px;padding:14px 18px;margin:18px 0 24px;display:flex;align-items:center;gap:12px">
+            <span style="width:9px;height:9px;border-radius:50%;background:{{ detail.badgeFg }};flex-shrink:0"></span>
+            <span style="font-size:14px;color:#2a3550;font-weight:600">{{ detail.whatsNext }}</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:22px">
+              <sc-if value="{{ detail.hasActions }}" hint-placeholder-val="{{ true }}">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                  <div style="font-family:'Libre Franklin';font-weight:700;font-size:15px;color:#16213c;margin-bottom:4px">{{ detail.actionHeading }}</div>
+                  <p style="font-size:13px;color:#6b7790;margin-bottom:14px">{{ detail.actionHint }}</p>
+                  <sc-if value="{{ detail.showRemarks }}" hint-placeholder-val="{{ true }}">
+                    <textarea value="{{ remarks }}" onInput="{{ onRemarks }}" rows="2" placeholder="Add remarks (optional) — recorded in the audit trail..." style="width:100%;padding:10px 12px;border:1px solid #cfd7e4;border-radius:8px;font-size:13.5px;resize:vertical;margin-bottom:14px"></textarea>
+                  </sc-if>
+                  <div style="display:flex;gap:11px;flex-wrap:wrap">
+                    <sc-for list="{{ detail.actions }}" as="act" hint-placeholder-count="2">
+                      <button onClick="{{ act.onClick }}" style="{{ act.style }}" style-hover="opacity:0.9">{{ act.label }}</button>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ detail.hasNarr }}" hint-placeholder-val="{{ true }}">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:22px 24px">
+                  <div style="font-family:'Libre Franklin';font-weight:700;font-size:15px;color:#16213c;margin-bottom:14px">Proposal narrative</div>
+                  <div style="display:flex;flex-direction:column;gap:14px">
+                    <sc-for list="{{ detail.narr }}" as="n" hint-placeholder-count="3">
+                      <div><div style="font-size:12px;font-weight:700;color:#7c8aa3;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px">{{ n.label }}</div><div style="font-size:13.5px;color:#3a465e;line-height:1.55">{{ n.content }}</div></div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:22px 24px">
+                <div style="font-family:'Libre Franklin';font-weight:700;font-size:15px;color:#16213c;margin-bottom:18px">Workflow progress</div>
+                <sc-for list="{{ detail.stages }}" as="st" hint-placeholder-count="6">
+                  <div style="display:flex;gap:14px">
+                    <div style="position:relative;width:26px;display:flex;justify-content:center;flex-shrink:0">
+                      <div style="position:absolute;top:22px;bottom:-6px;width:2px;background:{{ st.lineColor }}"></div>
+                      <div style="{{ st.dotStyle }}">{{ st.dotMark }}</div>
+                    </div>
+                    <div style="padding-bottom:18px;flex:1">
+                      <div style="font-weight:700;font-size:14px;color:{{ st.titleColor }}">{{ st.label }}</div>
+                      <div style="font-size:12.5px;color:#8a95a8;margin-top:2px">{{ st.caption }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:22px 24px">
+                <div style="font-family:'Libre Franklin';font-weight:700;font-size:15px;color:#16213c;margin-bottom:18px">Audit trail</div>
+                <sc-for list="{{ detail.history }}" as="h" hint-placeholder-count="3">
+                  <div style="display:flex;gap:14px">
+                    <div style="position:relative;width:26px;display:flex;justify-content:center;flex-shrink:0">
+                      <div style="{{ h.lineStyle }}"></div>
+                      <div style="width:11px;height:11px;border-radius:50%;background:{{ h.dotColor }};margin-top:4px;z-index:1;border:2px solid #fff;box-shadow:0 0 0 1px {{ h.dotColor }}"></div>
+                    </div>
+                    <div style="padding-bottom:18px;flex:1">
+                      <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-weight:700;font-size:13.5px;color:#16213c">{{ h.action }}</span><span style="font-size:12px;color:#9aa6bb">{{ h.date }}</span></div>
+                      <div style="font-size:12.5px;color:#6b7790;margin-top:1px">{{ h.by }} · {{ h.role }}</div>
+                      <sc-if value="{{ h.remarks }}" hint-placeholder-val="{{ true }}"><div style="font-size:13px;color:#42506b;margin-top:6px;background:#f6f8fb;border-radius:7px;padding:8px 11px;line-height:1.5">“{{ h.remarks }}”</div></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <sc-if value="{{ detail.hasBudget }}" hint-placeholder-val="{{ true }}">
+                <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                  <div style="font-size:13px;font-weight:700;color:#42506b;margin-bottom:14px">Funding summary</div>
+                  <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0"><span style="color:#6b7790">DOST-funded</span><span style="font-family:'IBM Plex Mono';color:#16213c;font-weight:600">{{ detail.bDost }}</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0"><span style="color:#6b7790">Counterpart</span><span style="font-family:'IBM Plex Mono';color:#16213c;font-weight:600">{{ detail.bCp }}</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-top:1px solid #eef1f6;margin-top:4px"><span style="color:#16213c;font-weight:700">Total</span><span style="font-family:'IBM Plex Mono';color:#16213c;font-weight:700">{{ detail.bTotal }}</span></div>
+                  <div style="{{ detail.bRuleStyle }}">{{ detail.bRuleText }}</div>
+                </div>
+              </sc-if>
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                <div style="font-size:13px;font-weight:700;color:#42506b;margin-bottom:14px">Proposal details</div>
+                <div style="display:flex;flex-direction:column;gap:13px">
+                  <sc-if value="{{ detail.tracking }}" hint-placeholder-val="{{ true }}"><div><div style="font-size:11.5px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Tracking code</div><div style="font-family:'IBM Plex Mono';font-size:13px;color:#1b56b0;margin-top:2px">{{ detail.tracking }}</div></div></sc-if>
+                  <div><div style="font-size:11.5px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Reference no.</div><div style="font-family:'IBM Plex Mono';font-size:13px;color:#16213c;margin-top:2px">{{ detail.ref }}</div></div>
+                  <div><div style="font-size:11.5px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Date created</div><div style="font-size:13.5px;color:#16213c;margin-top:2px">{{ detail.created }}</div></div>
+                  <div><div style="font-size:11.5px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Implementing unit</div><div style="font-size:13.5px;color:#16213c;margin-top:2px">{{ detail.unit }}</div></div>
+                  <div><div style="font-size:11.5px;color:#8a95a8;text-transform:uppercase;letter-spacing:0.05em;font-weight:600">Program</div><div style="font-size:13.5px;color:#16213c;margin-top:2px">{{ detail.program }}</div></div>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:20px 22px">
+                <div style="font-size:13px;font-weight:700;color:#42506b;margin-bottom:12px">Attached documents</div>
+                <sc-for list="{{ detail.files }}" as="f" hint-placeholder-count="2">
+                  <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;background:#f6f8fb;border:1px solid #eaeef5;border-radius:8px;margin-bottom:8px;cursor:pointer" style-hover="border-color:#c7d4ea">
+                    <span style="width:26px;height:26px;border-radius:6px;background:#e0e8f6;color:#1b56b0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:'IBM Plex Mono'">DOC</span>
+                    <span style="flex:1;font-size:13px;color:#3a465e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f }}</span>
+                    <span style="font-size:12px;color:#1b56b0;font-weight:600">View</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== REPORTS ===== -->
+        <sc-if value="{{ scReports }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+            <div>
+              <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;letter-spacing:-0.02em">Reports</h1>
+              <p style="color:#5b6577;font-size:14px;margin-top:2px">Summary of proposals and disbursements across the system.</p>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button onClick="{{ onExport }}" style="background:#fff;color:#1b3a6e;border:1px solid #c7d0e0;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit" style-hover="background:#f5f8fd">Export Excel</button>
+              <button onClick="{{ onExport }}" style="background:#1b56b0;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit" style-hover="background:#16489a">Export PDF</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+            <sc-for list="{{ reportStats }}" as="s" hint-placeholder-count="4">
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:18px 20px">
+                <div style="font-size:12px;color:#6b7790;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">{{ s.label }}</div>
+                <div style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:{{ s.color }};margin-top:8px;line-height:1">{{ s.value }}</div>
+                <div style="font-size:12px;color:#8a95a8;margin-top:4px">{{ s.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;overflow:hidden">
+            <div style="padding:16px 22px;border-bottom:1px solid #eef1f6;font-family:'Libre Franklin';font-weight:700;font-size:15px;color:#16213c">Breakdown by stage</div>
+            <div style="display:grid;grid-template-columns:1fr 130px 190px;background:#f6f8fb;padding:11px 22px">
+<div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Stage</div><div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;text-align:right">Proposals</div><div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;text-align:right">Total budget</div></div>
+<sc-for list="{{ reportRows }}" as="r" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:1fr 130px 190px;border-top:1px solid #eef1f6;align-items:center;padding:13px 22px">
+<div style="display:inline-flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:50%;background:{{ r.color }}"></span><span style="font-size:14px;color:#2a3550;font-weight:600">{{ r.label }}</span></div>
+<div style="text-align:right;font-size:14px;color:#16213c;font-weight:700">{{ r.count }}</div>
+<div style="text-align:right;font-family:'IBM Plex Mono';font-size:13.5px;color:#3a465e">{{ r.amount }}</div></div>
+</sc-for>
+          </div>
+        </sc-if>
+
+        <!-- ===== ACCOUNTS ===== -->
+        <sc-if value="{{ scAccounts }}" hint-placeholder-val="{{ true }}">
+          <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;letter-spacing:-0.02em;margin-bottom:2px">Account Approvals</h1>
+          <p style="color:#5b6577;font-size:14px;margin-bottom:22px">Newly registered accounts awaiting your authorization before they can sign in.</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ pending }}" as="a" hint-placeholder-count="3">
+              <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;padding:18px 22px;display:flex;align-items:center;gap:16px">
+                <div style="width:42px;height:42px;border-radius:50%;background:#eef2f9;color:#42506b;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">{{ a.initials }}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-weight:700;font-size:15px;color:#16213c">{{ a.name }}</div>
+                  <div style="font-size:13px;color:#6b7790;margin-top:2px"><span style="font-family:'IBM Plex Mono'">{{ a.email }}</span> · requested {{ a.requested }}</div>
+                </div>
+                <span style="background:#eef2f9;color:#42506b;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px">{{ a.role }}</span>
+                <span style="font-size:13px;color:#6b7790">{{ a.unit }}</span>
+                <button onClick="{{ a.onApprove }}" style="background:#16915a;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit" style-hover="opacity:0.9">Approve</button>
+                <button onClick="{{ a.onReject }}" style="background:#fff;color:#c0392b;border:1px solid #e6c3be;border-radius:8px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit" style-hover="background:#fdf3f1">Reject</button>
+              </div>
+            </sc-for>
+            <sc-if value="{{ pendingEmpty }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#fff;border:1px dashed #cdd6e4;border-radius:11px;padding:40px;text-align:center;color:#7c8aa3">No pending account requests. All registrations have been processed.</div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ===== USERS ===== -->
+        <sc-if value="{{ scUsers }}" hint-placeholder-val="{{ true }}">
+          <h1 style="font-family:'Libre Franklin';font-weight:800;font-size:26px;color:#16213c;letter-spacing:-0.02em;margin-bottom:2px">Users</h1>
+          <p style="color:#5b6577;font-size:14px;margin-bottom:22px">All registered accounts and their roles across regional offices.</p>
+          <div style="background:#fff;border:1px solid #e0e5ee;border-radius:11px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:2fr 1.2fr 1.4fr 120px;background:#f6f8fb;padding:12px 22px">
+<div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Name</div><div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Role</div><div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Unit</div><div style="font-size:12px;color:#7c8aa3;font-weight:600;text-transform:uppercase;letter-spacing:0.04em">Status</div></div>
+<sc-for list="{{ users }}" as="u" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:2fr 1.2fr 1.4fr 120px;border-top:1px solid #eef1f6;align-items:center;padding:13px 22px">
+<div><div style="font-weight:600;font-size:14px;color:#16213c">{{ u.name }}</div><div style="font-family:'IBM Plex Mono';font-size:12px;color:#8a95a8">{{ u.email }}</div></div>
+<div style="font-size:13.5px;color:#42506b">{{ u.role }}</div>
+<div style="font-size:13.5px;color:#6b7790">{{ u.unit }}</div>
+<div><span style="background:{{ u.statusBg }};color:{{ u.statusFg }};font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px">{{ u.status }}</span></div></div>
+</sc-for>
+          </div>
+        </sc-if>
+
+      </main>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</template>
+<script src="assets/js/dpmis-runtime.js"></script>
+<script src="assets/js/dpmis-logic.js"></script>
 </body>
 </html>
