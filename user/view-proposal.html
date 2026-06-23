@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal · GIA (DOST)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="sb-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/images/dost-logo.png" alt="DOST" width="30" height="30">
+      <div>GIA<small>Submitter</small></div>
+    </div>
+    <span class="nav-label">Workspace</span>
+    <a class="nav-link" href="dashboard.html">▢ Dashboard</a>
+    <a class="nav-link" href="create-proposal.html">＋ Create proposal</a>
+    <a class="nav-link active" href="my-proposals.html">▤ My proposals</a>
+    <span class="nav-label">Account</span>
+    <a class="nav-link" href="#">⚙ Settings</a>
+    <div class="sidebar-foot"><a class="nav-link" href="../auth/login.html">⏻ Sign out</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn sb-toggle" data-sb-toggle aria-label="Menu">☰</button>
+      <div>
+        <p class="page-title">Proposal detail</p>
+        <p class="crumb mb-0"><a href="my-proposals.html">My proposals</a> · GIA-2026-0042</p>
+      </div>
+      <div class="spacer"></div>
+      <div class="avatar">JC</div>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <p class="id-cell mb-1">GIA-2026-0042 · submitted 2026-06-14</p>
+          <h1>Solar-powered water purification for rural barangays</h1>
+          <p class="sub">
+            <span class="badge-status s-endorsed">Endorsed</span>
+            <span class="mono ms-2">Department of R&amp;D · ₱ 480,000</span>
+          </p>
+        </div>
+        <div class="ms-auto d-flex gap-2">
+          <button class="btn btn-outline-secondary btn-sm">⬇ Download PDF</button>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Left: content -->
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-header">Description &amp; objectives</div>
+            <div class="card-body">
+              <p>This project develops a low-cost, solar-powered water purification unit designed for off-grid rural barangays with limited access to potable water. Each unit combines photovoltaic panels with a multi-stage filtration and UV-disinfection system.</p>
+              <p class="mb-0"><strong>Objectives:</strong> (1) Build and field-test 5 prototype units across 3 pilot barangays; (2) Reduce water-borne illness incidence by a measurable margin; (3) Produce an open hardware spec for local replication.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Attachments</div>
+            <div class="card-body d-flex flex-column gap-2">
+              <div class="file-row">
+                <span class="ext ext-pdf">PDF</span>
+                <div class="flex-grow-1"><div class="fw-semibold small">project-proposal.pdf</div><div class="muted small mono">2.41 MB · 2026-06-14</div></div>
+                <button class="btn btn-sm btn-outline-secondary">Download</button>
+              </div>
+              <div class="file-row">
+                <span class="ext ext-xlsx">XLSX</span>
+                <div class="flex-grow-1"><div class="fw-semibold small">budget-breakdown.xlsx</div><div class="muted small mono">86 KB · 2026-06-14</div></div>
+                <button class="btn btn-sm btn-outline-secondary">Download</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Revision response box (submitter view) -->
+          <div class="card">
+            <div class="card-header">Add a comment</div>
+            <div class="card-body">
+              <textarea class="form-control mb-2" rows="3" placeholder="Reply to reviewers or note a change…"></textarea>
+              <div class="text-end"><button class="btn btn-primary btn-sm">Post comment</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: timeline -->
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-header">Proposal timeline</div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="tl-item is-active">
+                  <div class="tl-time">2026-06-20 · 10:24</div>
+                  <div class="tl-title">Endorsed</div>
+                  <div class="tl-by">by Maria Santos · Endorsing Admin</div>
+                  <div class="tl-note">Strong methodology. Forwarded to Approver.</div>
+                </div>
+                <div class="tl-item is-done">
+                  <div class="tl-time">2026-06-16 · 09:02</div>
+                  <div class="tl-title">Resubmitted</div>
+                  <div class="tl-by">by Juan dela Cruz · Submitter</div>
+                </div>
+                <div class="tl-item is-reject">
+                  <div class="tl-time">2026-06-15 · 14:40</div>
+                  <div class="tl-title">Revision requested</div>
+                  <div class="tl-by">by Maria Santos · Endorsing Admin</div>
+                  <div class="tl-note">Please attach a detailed budget breakdown.</div>
+                </div>
+                <div class="tl-item is-done">
+                  <div class="tl-time">2026-06-14 · 16:10</div>
+                  <div class="tl-title">Submitted</div>
+                  <div class="tl-by">by Juan dela Cruz · Submitter</div>
+                </div>
+                <div class="tl-item is-done">
+                  <div class="tl-time">2026-06-14 · 15:55</div>
+                  <div class="tl-title">Draft created</div>
+                  <div class="tl-by">by Juan dela Cruz · Submitter</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

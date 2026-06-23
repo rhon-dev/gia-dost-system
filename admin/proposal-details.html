@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review proposal · GIA (DOST) Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="sb-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/images/dost-logo.png" alt="DOST" width="30" height="30">
+      <div>GIA<small>Endorsing Admin</small></div>
+    </div>
+    <span class="nav-label">Review</span>
+    <a class="nav-link active" href="pending.html">◷ Pending review</a>
+    <a class="nav-link" href="#">▤ All proposals</a>
+    <span class="nav-label">Account</span>
+    <a class="nav-link" href="#">⚙ Settings</a>
+    <div class="sidebar-foot"><a class="nav-link" href="../auth/login.html">⏻ Sign out</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn sb-toggle" data-sb-toggle aria-label="Menu">☰</button>
+      <div>
+        <p class="page-title">Review proposal</p>
+        <p class="crumb mb-0"><a href="pending.html">Pending review</a> · GIA-2026-0048</p>
+      </div>
+      <div class="spacer"></div>
+      <div class="avatar">MS</div>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <p class="id-cell mb-1">GIA-2026-0048 · submitted 2026-06-22</p>
+          <h1>Portable seismic sensor for landslide-prone slopes</h1>
+          <p class="sub"><span class="badge-status s-submitted">Submitted</span><span class="mono ms-2">R. Aquino · Regional Office · ₱ 760,000</span></p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-header">Description &amp; objectives</div>
+            <div class="card-body">
+              <p>A ruggedized, battery-efficient seismic sensor node that detects micro-tremors and soil-movement signatures preceding landslides, transmitting alerts over LoRa to a barangay early-warning station.</p>
+              <p class="mb-0"><strong>Objectives:</strong> deploy 10 nodes across 2 high-risk slopes; validate detection lead-time against historical events; publish calibration methodology.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Attachments</div>
+            <div class="card-body d-flex flex-column gap-2">
+              <div class="file-row"><span class="ext ext-pdf">PDF</span><div class="flex-grow-1"><div class="fw-semibold small">proposal-0048.pdf</div><div class="muted small mono">3.10 MB</div></div><button class="btn btn-sm btn-outline-secondary">Download</button></div>
+              <div class="file-row"><span class="ext ext-docx">DOCX</span><div class="flex-grow-1"><div class="fw-semibold small">methodology.docx</div><div class="muted small mono">240 KB</div></div><button class="btn btn-sm btn-outline-secondary">Download</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action panel -->
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-header">Decision</div>
+            <div class="card-body d-grid gap-2">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endorseModal">✓ Endorse</button>
+              <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviseModal">↺ Request revision</button>
+              <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#rejectModal">✕ Reject</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Timeline</div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="tl-item is-active"><div class="tl-time">2026-06-22 · 08:14</div><div class="tl-title">Submitted</div><div class="tl-by">by R. Aquino</div></div>
+                <div class="tl-item is-done"><div class="tl-time">2026-06-22 · 07:50</div><div class="tl-title">Draft created</div><div class="tl-by">by R. Aquino</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Endorse modal -->
+<div class="modal fade" id="endorseModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Endorse proposal</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <p class="muted small">This forwards <span class="mono">GIA-2026-0048</span> to the Approver.</p>
+      <label class="form-label">Remarks (optional)</label>
+      <textarea class="form-control" rows="3" placeholder="Note for the Approver…"></textarea>
+    </div>
+    <div class="modal-footer"><button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary">Confirm endorsement</button></div>
+  </div></div>
+</div>
+
+<!-- Revision modal -->
+<div class="modal fade" id="reviseModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Request revision</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <p class="muted small">Sends the proposal back to the submitter. Required: tell them what to fix.</p>
+      <label class="form-label">What needs changing?</label>
+      <textarea class="form-control" rows="4" placeholder="e.g. Attach a detailed budget breakdown and clarify the deployment timeline." required></textarea>
+    </div>
+    <div class="modal-footer"><button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary">Send revision request</button></div>
+  </div></div>
+</div>
+
+<!-- Reject modal -->
+<div class="modal fade" id="rejectModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Reject proposal</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <p class="muted small">This closes the proposal. The submitter will be notified.</p>
+      <label class="form-label">Reason for rejection</label>
+      <textarea class="form-control" rows="4" placeholder="State the reason clearly." required></textarea>
+    </div>
+    <div class="modal-footer"><button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button class="btn btn-danger">Confirm rejection</button></div>
+  </div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

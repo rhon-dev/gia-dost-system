@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending review · GIA (DOST) Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="sb-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/images/dost-logo.png" alt="DOST" width="30" height="30">
+      <div>GIA<small>Endorsing Admin</small></div>
+    </div>
+    <span class="nav-label">Review</span>
+    <a class="nav-link active" href="pending.html">◷ Pending review</a>
+    <a class="nav-link" href="#">▤ All proposals</a>
+    <span class="nav-label">Account</span>
+    <a class="nav-link" href="#">⚙ Settings</a>
+    <div class="sidebar-foot"><a class="nav-link" href="../auth/login.html">⏻ Sign out</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn sb-toggle" data-sb-toggle aria-label="Menu">☰</button>
+      <div>
+        <p class="page-title">Pending review</p>
+        <p class="crumb mb-0">Admin · Review queue</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="icon-btn" aria-label="Notifications">🔔<span class="dot"></span></button>
+      <div class="avatar">MS</div>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <h1>Pending review</h1>
+          <p class="sub">5 proposals awaiting your endorsement.</p>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3"><div class="card stat-card is-pending"><div class="stat-icon">◷</div><div class="stat-value">5</div><div class="stat-label">Awaiting review</div></div></div>
+        <div class="col-6 col-lg-3"><div class="card stat-card is-approved"><div class="stat-icon">✓</div><div class="stat-value">23</div><div class="stat-label">Endorsed (month)</div></div></div>
+        <div class="col-6 col-lg-3"><div class="card stat-card"><div class="stat-icon">↺</div><div class="stat-value">6</div><div class="stat-label">Revisions sent</div></div></div>
+        <div class="col-6 col-lg-3"><div class="card stat-card is-rejected"><div class="stat-icon">✕</div><div class="stat-value">2</div><div class="stat-label">Rejected</div></div></div>
+      </div>
+
+      <div class="card table-card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>Submitted proposals</span>
+          <input type="search" class="form-control form-control-sm" style="max-width:240px" placeholder="🔍 Search…">
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead><tr><th>ID</th><th>Title</th><th>Submitter</th><th>Budget</th><th>Submitted</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="id-cell">GIA-2026-0048</td><td>Portable seismic sensor for landslide-prone slopes</td><td>R. Aquino</td><td class="mono small">₱ 760,000</td><td class="mono small muted">2026-06-22</td><td><a href="proposal-details.html" class="btn btn-sm btn-primary">Review</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0047</td><td>Microalgae biofuel pilot reactor</td><td>L. Reyes</td><td class="mono small">₱ 1,450,000</td><td class="mono small muted">2026-06-22</td><td><a href="proposal-details.html" class="btn btn-sm btn-primary">Review</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0045</td><td>Vernacular OCR for historical archives</td><td>J. Tan</td><td class="mono small">₱ 410,000</td><td class="mono small muted">2026-06-21</td><td><a href="proposal-details.html" class="btn btn-sm btn-primary">Review</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0044</td><td>Low-cost air-quality monitoring mesh</td><td>P. Cruz</td><td class="mono small">₱ 580,000</td><td class="mono small muted">2026-06-21</td><td><a href="proposal-details.html" class="btn btn-sm btn-primary">Review</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0043</td><td>Rice-husk biochar for soil remediation</td><td>M. Lim</td><td class="mono small">₱ 690,000</td><td class="mono small muted">2026-06-20</td><td><a href="proposal-details.html" class="btn btn-sm btn-primary">Review</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

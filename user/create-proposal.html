@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create proposal · GIA (DOST)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="sb-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/images/dost-logo.png" alt="DOST" width="30" height="30">
+      <div>GIA<small>Submitter</small></div>
+    </div>
+    <span class="nav-label">Workspace</span>
+    <a class="nav-link" href="dashboard.html">▢ Dashboard</a>
+    <a class="nav-link active" href="create-proposal.html">＋ Create proposal</a>
+    <a class="nav-link" href="my-proposals.html">▤ My proposals</a>
+    <span class="nav-label">Account</span>
+    <a class="nav-link" href="#">⚙ Settings</a>
+    <div class="sidebar-foot"><a class="nav-link" href="../auth/login.html">⏻ Sign out</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn sb-toggle" data-sb-toggle aria-label="Menu">☰</button>
+      <div>
+        <p class="page-title">Create proposal</p>
+        <p class="crumb mb-0">My proposals · New</p>
+      </div>
+      <div class="spacer"></div>
+      <div class="avatar">JC</div>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <h1>New grant proposal</h1>
+          <p class="sub">Save as draft anytime. Submit when you're ready for review.</p>
+        </div>
+      </div>
+
+      <form action="#" method="post" enctype="multipart/form-data">
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-header">Proposal details</div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label" for="title">Project title</label>
+                  <input type="text" class="form-control" id="title" placeholder="e.g. Solar-powered water purification for rural barangays" required>
+                </div>
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6">
+                    <label class="form-label" for="dept">Department</label>
+                    <select class="form-select" id="dept">
+                      <option>Research &amp; Development</option>
+                      <option>Science Education</option>
+                      <option>Regional Office</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="form-label" for="budget">Requested budget (PHP)</label>
+                    <input type="text" class="form-control mono" id="budget" placeholder="0.00">
+                  </div>
+                </div>
+                <div class="mb-1">
+                  <label class="form-label" for="desc">Description &amp; objectives</label>
+                  <textarea class="form-control" id="desc" rows="7" placeholder="Describe the research problem, objectives, methodology, and expected outcomes…"></textarea>
+                </div>
+                <p class="form-text">Be specific about deliverables and timeline. Reviewers read this first.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">Attachments</div>
+              <div class="card-body">
+                <div class="dropzone" data-dropzone="#fileList">
+                  <div class="dz-icon">⬆</div>
+                  <p class="mb-1 fw-semibold">Drop files here or click to browse</p>
+                  <p class="muted small mb-0">PDF, DOCX, XLSX — max 10 MB each</p>
+                  <input type="file" hidden multiple accept=".pdf,.docx,.xlsx">
+                </div>
+                <div id="fileList">
+                  <div class="file-row mt-3">
+                    <span class="ext ext-pdf">PDF</span>
+                    <div class="flex-grow-1">
+                      <div class="fw-semibold small">project-proposal.pdf</div>
+                      <div class="muted small mono">2.41 MB</div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="this.closest('.file-row').remove()">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-header">Submission</div>
+              <div class="card-body">
+                <p class="muted small">Drafts are private. Once submitted, your proposal goes to an Endorsing Admin for review.</p>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Submit proposal</button>
+                  <button type="submit" class="btn btn-outline-secondary" formnovalidate>Save as draft</button>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">Workflow</div>
+              <div class="card-body">
+                <ol class="muted small mb-0 ps-3 d-flex flex-column gap-2">
+                  <li>Submit &amp; await admin review</li>
+                  <li>Endorsement or revision request</li>
+                  <li>Approver decision</li>
+                  <li>Accounting processing</li>
+                  <li>Completed</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

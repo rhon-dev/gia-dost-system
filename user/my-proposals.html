@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My proposals · GIA (DOST)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="sb-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/images/dost-logo.png" alt="DOST" width="30" height="30">
+      <div>GIA<small>Submitter</small></div>
+    </div>
+    <span class="nav-label">Workspace</span>
+    <a class="nav-link" href="dashboard.html">▢ Dashboard</a>
+    <a class="nav-link" href="create-proposal.html">＋ Create proposal</a>
+    <a class="nav-link active" href="my-proposals.html">▤ My proposals</a>
+    <span class="nav-label">Account</span>
+    <a class="nav-link" href="#">⚙ Settings</a>
+    <div class="sidebar-foot"><a class="nav-link" href="../auth/login.html">⏻ Sign out</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn sb-toggle" data-sb-toggle aria-label="Menu">☰</button>
+      <div>
+        <p class="page-title">My proposals</p>
+        <p class="crumb mb-0">Home · My proposals</p>
+      </div>
+      <div class="spacer"></div>
+      <a href="create-proposal.html" class="btn btn-primary btn-sm">＋ New proposal</a>
+      <div class="avatar">JC</div>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <h1>My proposals</h1>
+          <p class="sub">12 proposals total.</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="card mb-3">
+        <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+          <input type="search" class="form-control" style="max-width:280px" placeholder="🔍 Search by title or ID…">
+          <select class="form-select" style="max-width:200px">
+            <option selected>All statuses</option>
+            <option>Draft</option><option>Submitted</option><option>Revision requested</option>
+            <option>Endorsed</option><option>Approved</option><option>Rejected</option>
+            <option>Accounting</option><option>Completed</option>
+          </select>
+          <select class="form-select" style="max-width:180px">
+            <option selected>Newest first</option>
+            <option>Oldest first</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card table-card">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr><th>ID</th><th>Title</th><th>Status</th><th>Budget</th><th>Updated</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="id-cell">GIA-2026-0042</td><td>Solar-powered water purification for rural barangays</td><td><span class="badge-status s-endorsed">Endorsed</span></td><td class="mono small">₱ 480,000</td><td class="mono small muted">2026-06-20</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0039</td><td>AI crop-disease detection for smallholder farms</td><td><span class="badge-status s-approved">Approved</span></td><td class="mono small">₱ 1,200,000</td><td class="mono small muted">2026-06-18</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0035</td><td>Coastal flood early-warning sensor network</td><td><span class="badge-status s-revision">Revision</span></td><td class="mono small">₱ 850,000</td><td class="mono small muted">2026-06-15</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0031</td><td>Low-cost prosthetics via 3D printing</td><td><span class="badge-status s-draft">Draft</span></td><td class="mono small">₱ 320,000</td><td class="mono small muted">2026-06-12</td><td><a href="create-proposal.html" class="btn btn-sm btn-outline-secondary">Edit</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0028</td><td>Mangrove carbon-stock mapping with drones</td><td><span class="badge-status s-accounting">Accounting</span></td><td class="mono small">₱ 670,000</td><td class="mono small muted">2026-06-09</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0024</td><td>Open-source LMS for provincial high schools</td><td><span class="badge-status s-completed">Completed</span></td><td class="mono small">₱ 540,000</td><td class="mono small muted">2026-06-02</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0019</td><td>Geothermal micro-grid feasibility study</td><td><span class="badge-status s-rejected">Rejected</span></td><td class="mono small">₱ 2,100,000</td><td class="mono small muted">2026-05-28</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+              <tr><td class="id-cell">GIA-2026-0015</td><td>Indigenous-language speech dataset</td><td><span class="badge-status s-submitted">Submitted</span></td><td class="mono small">₱ 390,000</td><td class="mono small muted">2026-05-22</td><td><a href="view-proposal.html" class="btn btn-sm btn-outline-secondary">View</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <nav class="d-flex justify-content-between align-items-center mt-3">
+        <span class="muted small">Showing 1–8 of 12</span>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item disabled"><a class="page-link" href="#">‹</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">›</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>
